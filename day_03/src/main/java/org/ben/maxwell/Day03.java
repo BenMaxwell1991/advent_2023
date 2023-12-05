@@ -26,12 +26,14 @@ public class Day03 {
 
     }
 
+    // Given a Number, use the input data to check it's validity.
     static boolean isNumberValid(Number number, List<String> input) {
 
         int maxLength = input.get(0).length();
         boolean isValid = false;
         IntPredicate isSymbol = character -> !isDigit(character) && character != '.';
 
+        // Check line above
         if (number.line > 0) {
 
             String checkUp = input.get(number.line - 1);
@@ -43,6 +45,7 @@ public class Day03 {
 
         }
 
+        // Check to the left
         if (number.index > 0) {
 
             char c = input.get(number.line).charAt(number.index - 1);
@@ -50,6 +53,7 @@ public class Day03 {
 
         }
 
+        // Check to right
         if (number.index + number.length < maxLength) {
 
             char c = input.get(number.line).charAt(number.index + number.length);
@@ -57,6 +61,7 @@ public class Day03 {
 
         }
 
+        // Criss-cross, I mean check below.
         if (number.line < input.size() - 1) {
 
             String checkDown = input.get(number.line + 1);
@@ -72,13 +77,13 @@ public class Day03 {
 
     }
 
+    // Compile a list of all the numbers in the data.
     static List<Number> getNumbers(List<String> input) {
 
         List<Number> numbers = new ArrayList<>();
 
         Pattern pattern = Pattern.compile("\\d+");
 
-        // Compile a list of all the numbers in the data.
         for (int i = 0; i < input.size(); i++) {
 
             String line = input.get(i);
@@ -100,6 +105,7 @@ public class Day03 {
 
     }
 
+    // Store all the exciting information for each number in the data, everything we need for validation.
     static class Number {
 
         int value;

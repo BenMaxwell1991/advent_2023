@@ -1,6 +1,6 @@
 package org.ben.maxwell;
 
-public class Main {
+public class Day02 {
 
     public static void main(String[] args) throws Exception {
 

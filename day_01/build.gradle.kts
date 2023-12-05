@@ -5,12 +5,6 @@ plugins {
 group = "org.ben.maxwell"
 version = "1.0-SNAPSHOT"
 
-tasks.jar {
-    manifest {
-        attributes("Main-Class" to "org.ben.maxwell.Main")
-    }
-}
-
 repositories {
     mavenCentral()
 }

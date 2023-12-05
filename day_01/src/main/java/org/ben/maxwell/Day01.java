@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.valueOf;
+import static java.nio.file.Files.readAllLines;
+import static java.nio.file.Path.of;
 
-public class Main {
+public class Day01 {
     public static void main(String[] args) throws IOException {
 
         solvePart1();
@@ -21,29 +23,23 @@ public class Main {
 
     static void solvePart1() throws IOException {
 
-        try (InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("input_01.txt")) {
+        List<String> input = readAllLines(of("day_01","src", "main", "resources", "input_01.txt"));
+        List<Integer> values = new ArrayList<>();
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            List<String> input = reader.lines().toList();
-
-            List<Integer> values = new ArrayList<>();
-
-            for (String str : input) {
-                String first = Character.toString((char) str.chars().filter(Character::isDigit).findFirst().orElseGet(() -> 0));
-                String last = Character.toString((char) str.chars().filter(Character::isDigit).reduce((a, b) -> b).orElseGet(() -> 0));
-                values.add(valueOf(first + last));
-            }
-
-            Integer total = values.stream().reduce(Integer::sum).get();
-            System.out.println(total);
-
+        for (String str : input) {
+            String first = Character.toString((char) str.chars().filter(Character::isDigit).findFirst().orElseGet(() -> 0));
+            String last = Character.toString((char) str.chars().filter(Character::isDigit).reduce((a, b) -> b).orElseGet(() -> 0));
+            values.add(valueOf(first + last));
         }
+
+        Integer total = values.stream().reduce(Integer::sum).get();
+        System.out.println(total);
 
     }
 
     static void solvePart2() throws IOException {
 
-        try (InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("input_01.txt")) {
+        try (InputStream inputStream = Day01.class.getClassLoader().getResourceAsStream("input_01.txt")) {
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             List<String> input = reader.lines().toList();
